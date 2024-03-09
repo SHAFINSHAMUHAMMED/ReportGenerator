@@ -11,7 +11,7 @@ function Table1({ rows }) {
   };
 
   return (
-    <div className="table-container mb-10">
+    <div className="table-container mb-48">
       <div className="table-title">Total Campaign Overview</div>
       <table className="styled-table">
         <thead>

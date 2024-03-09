@@ -39,7 +39,7 @@ function charts(data) {
     const costPerClick = formatDivisionResult(sumOfAdspend,sumOflinksClick)
     const cvr = formatDivisionResult(sumOfLead,sumOflinksClick)
     const cvrAvg = (cvr*100).toFixed(0)
-    console.log(sumOfCpc)
+
   return (
     <>
    <div className='flex justify-center items-center pt-5 m-auto mt-10 gap-3 text-center max-w-[1150px]' >

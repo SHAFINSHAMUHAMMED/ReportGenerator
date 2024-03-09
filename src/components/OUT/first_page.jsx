@@ -5,7 +5,7 @@ import man from '../../assets/man.svg'
 
 function first_page() {
   return (
-    <div className='p-20 max-w-[1400px] m-auto rounded-md over'
+    <div className='p-20 max-w-[1400px] m-auto rounded-md over mb-64'
     style={{
         background: 'linear-gradient(135deg, #2572FF 3.54%, #002E81 104.67%)'
       }}

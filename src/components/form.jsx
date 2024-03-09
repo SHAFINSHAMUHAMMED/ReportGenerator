@@ -49,8 +49,8 @@ function Form({ onGenerate }) {
     const costPerResult = totals.adSpent/totals.results
     onGenerate({ campaignName, ...totals, weeks, costPerResult }); 
     // Clearing all fields after submitting form
-    // setCampaignName('');
-    // setWeeks(Array(4).fill().map(() => ({ ...initialWeekData })));
+    setCampaignName('');
+    setWeeks(Array(4).fill().map(() => ({ ...initialWeekData })));
   };
   return (
     <div className="form-container">
