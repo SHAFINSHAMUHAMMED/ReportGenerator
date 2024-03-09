@@ -42,7 +42,7 @@ function costPerLead(array) {
   return (
     <div>
               <div className="chart-heading text-[#1457D1] bg-[#EDF2FC] rounded-lg rounded-b-none">Cost Per Result</div>
-       <div className='text-4xl text-center font-bold text-[#023B8A]'>₹{array.cpl}</div>
+       <div className='text-4xl text-center font-bold text-[#023B8A]'><span className='font-medium' contentEditable={true}>₹</span>{array.cpl}</div>
       <Line data={data} options={options} className='p-5' />
     </div>
   )

@@ -26,6 +26,33 @@ function charts(data) {
       // Perform division and fix to 2 decimal places
       return (numerator / denominator).toFixed(2);
     };
+
+    const formatResult = (numerator, denominator) => {
+      if (denominator === 0) return "0.00";
+    
+      // Calculate division
+      const result = numerator / denominator;
+      
+      // Convert to string
+      const resultString = result.toString();
+      
+      // Find the position of the decimal point
+      const dotIndex = resultString.indexOf('.');
+      
+      if (dotIndex === -1) { // If there is no decimal point, append ".00"
+        return resultString + ".00";
+      }
+    
+      // If there are less than two digits after the decimal, add the necessary number of zeros
+      if (resultString.length - dotIndex - 1 < 2) {
+        return resultString + "0".repeat(2 - (resultString.length - dotIndex - 1));
+      }
+      
+      // Truncate to two decimal places without rounding
+      return resultString.substring(0, dotIndex + 3);
+    };
+    
+    
   
     const sumOfLead = leads.reduce((acc, currentValue) => acc + currentValue, 0);
     const sumOfAdspend = adspend.reduce((acc, currentValue) => acc + currentValue, 0);
@@ -37,8 +64,9 @@ function charts(data) {
    
     const cpl = formatDivisionResult(sumOfAdspend,sumOfLead) 
     const costPerClick = formatDivisionResult(sumOfAdspend,sumOflinksClick)
-    const cvr = formatDivisionResult(sumOfLead,sumOflinksClick)
-    const cvrAvg = (cvr*100).toFixed(0)
+    const ctr= sumOflinkClickRate/4
+    const cvr = formatResult(sumOfLead,sumOflinksClick)
+    const cvrAvg = (cvr*100)
 
   return (
     <>
@@ -74,7 +102,7 @@ function charts(data) {
         <Cpc data={cpc} cpc={costPerClick} />
       </div>
       <div className="chart chart-linksClickRate">
-        <LinkClickthroughRate data={linkClickRate} />
+        <LinkClickthroughRate data={linkClickRate} ctr={ctr} />
       </div>
       {/* ... other chart components */}
     </div>
@@ -101,13 +129,13 @@ function charts(data) {
         <tbody>
             <tr>
               <td className='!p-8'>{data.name}</td>
-              <td>₹{sumOfAdspend.toFixed(2)}</td>
+              <td><span className='font-medium text-lg' contentEditable={true}>₹</span> {sumOfAdspend.toFixed(2)}</td>
               <td>{sumOfLead}</td>
-              <td>₹{cpl}</td>
+              <td><span className='font-medium text-lg' contentEditable={true}>₹</span> {cpl}</td>
               <td>{sumOflinksClick}</td>
               <td>{sumOfImpression}</td>
-              <td>₹{costPerClick}</td>
-              <td>{sumOflinkClickRate.toFixed(1)}%</td>
+              <td><span className='font-medium text-lg' contentEditable={true}>₹</span> {costPerClick}</td>
+              <td>{ctr.toFixed(1)}%</td>
             </tr>
         </tbody>
       </table>

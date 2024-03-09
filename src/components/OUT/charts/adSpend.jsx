@@ -43,7 +43,7 @@ function adSpent(array) {
   return (
     <div>
        <div className="chart-heading text-white bg-[#023B8A] rounded-lg rounded-b-none">Ad Spent</div>
-       <div className='text-4xl text-center font-bold text-[#023B8A]'>₹{sumOfData.toFixed(2)}</div>
+       <div className='text-4xl text-center font-bold text-[#023B8A]'><span className='font-medium' contentEditable={true}>₹</span>{sumOfData.toFixed(2)}</div>
       <Line data={data} options={options} className='p-5' />
     </div>
   )

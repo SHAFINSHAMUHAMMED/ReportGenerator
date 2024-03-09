@@ -31,14 +31,14 @@ function Table1({ rows }) {
           {rows.map((row, index) => (
             <tr key={index}>
               <td>{row.campaignName}</td>
-              <td>₹{row.adSpent.toFixed(2)}</td>
+              <td><span className='font-medium text-lg' contentEditable={true}>₹</span> {row.adSpent.toFixed(2)}</td>
               <td>{row.results}</td>
-              <td>₹{formatDivisionResult(row.adSpent, row.results)}</td>
+              <td><span className='font-medium text-lg' contentEditable={true}>₹</span> {formatDivisionResult(row.adSpent, row.results)}</td>
               <td>{row.clicks}</td>
               <td>{row.impression}</td>
               <td>{row.reach}</td>
-              <td>₹{formatDivisionResult(row.adSpent, row.clicks)}</td>
-              <td>{row.ctr.toFixed(1)}%</td>
+              <td><span className='font-medium text-lg' contentEditable={true}>₹ </span>{formatDivisionResult(row.adSpent, row.clicks)}</td>
+              <td>{(row.ctr/4).toFixed(1)}%</td>
             </tr>
           ))}
         </tbody>

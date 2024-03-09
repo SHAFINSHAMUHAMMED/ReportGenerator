@@ -35,7 +35,13 @@ function Form({ onGenerate }) {
     }, {});
     return totals;
   };
-  
+  const handleKeyDown = (event) => {
+    // Check if the key pressed is 'Enter'
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      return false;
+    }
+  };
 
   const totals = calculateTotals();
 
@@ -49,9 +55,11 @@ function Form({ onGenerate }) {
     const costPerResult = totals.adSpent/totals.results
     onGenerate({ campaignName, ...totals, weeks, costPerResult }); 
     // Clearing all fields after submitting form
+  };
+  const clearAll = ()=> {
     setCampaignName('');
     setWeeks(Array(4).fill().map(() => ({ ...initialWeekData })));
-  };
+  }
   return (
     <div className="form-container">
       <form onSubmit={handleSubmit} className="form-main">
@@ -63,6 +71,7 @@ function Form({ onGenerate }) {
             className="form-input"
             value={campaignName}
             onChange={handleCampaignNameChange}
+            onKeyDown={handleKeyDown}
           />
         </div>
         <div className="form-table-container">
@@ -88,6 +97,7 @@ function Form({ onGenerate }) {
                         type="number"
                         value={week[metric]}
                         onChange={(e) => handleWeekDataChange(index, metric, e)}
+                        onKeyDown={handleKeyDown}
                         className="form-input-number"
                       />
                     </td>
@@ -99,13 +109,14 @@ function Form({ onGenerate }) {
                 <td className='form-cell font-bold'>Total</td>
                 {Object.values(totals).map((total, index) => (
                   <td key={index} className='form-cell font-bold'>
-                    {total}
+                    {total.toFixed(2)}
                   </td>
                 ))}
               </tr>
             </tbody>
           </table>
         </div>
+          <div className='flex justify-end mt-2 pe-1' > <span onClick={clearAll} className='bg-gray-400 p-1 rounded  w-[70px] f  '>Clear All</span></div>
         <button className="form-submit-btn" type="submit">Generate</button>
       </form>
     </div>

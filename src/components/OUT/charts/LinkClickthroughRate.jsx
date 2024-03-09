@@ -3,7 +3,7 @@ import { Line } from 'react-chartjs-2';
 import 'chart.js/auto';
 
 function LinkClickthroughRate(array) {
-  const sumOfData = array.data.reduce((acc, currentValue) => acc + currentValue, 0);
+
   const data = {
     labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
     datasets: [
@@ -42,7 +42,7 @@ function LinkClickthroughRate(array) {
   return (
     <div>
               <div className="chart-heading text-[#1457D1] bg-[#EDF2FC] rounded-lg rounded-b-none">Link Clickthrough Rate</div>
-       <div className='text-4xl text-center font-bold text-[#023B8A]'>{sumOfData.toFixed(1)}%</div>
+       <div className='text-4xl text-center font-bold text-[#023B8A]'>{array.ctr.toFixed(1)}%</div>
       <Line data={data} options={options} className='p-5' />
     </div>
   )
